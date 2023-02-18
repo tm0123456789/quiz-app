@@ -91,7 +91,7 @@ class QuizParser(xml.sax.ContentHandler):
 
 # if __name__ == '__main__':
 #     app = QuizParser()
-#     quiz = app.parse_quiz("./quizes/SampleQuiz.xml")
+#     quiz = app.parse_quiz("./quizzes/SampleQuiz.xml")
 #     print(quiz.name)
 #     print(quiz.description)
 #     print(len(quiz.questions))
