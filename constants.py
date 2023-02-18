@@ -11,3 +11,16 @@ class AnswerOptionMC(str, Enum):
     B = 'b'
     C = 'c'
     D = 'd'
+
+
+class QuestionType(str, Enum):
+    TF = 'tf'
+    MC = 'mc'
+
+
+class Tag(str, Enum):
+    QUIZ = "Quiz"
+    DESCRIPTION = "Description"
+    QUESTION = "Question"
+    QUESTION_TEXT = "QuestionText"
+    ANSWER = "Answer"

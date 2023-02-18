@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Quiz name="Sample Quiz">
+    <Description>Sample quiz</Description>
+    <Question type="mc" points="10">
+        <QuestionText answer="b">2+2 equals</QuestionText>
+        <Answer option="a">1</Answer>
+        <Answer option="b">4</Answer>
+        <Answer option="c">2</Answer>
+        <Answer option="d">8</Answer>
+    </Question>
+    <Question type="tf" points="5">
+        <QuestionText answer="t">2+2=4?</QuestionText>
+    </Question>
+</Quiz>
