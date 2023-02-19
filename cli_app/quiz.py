@@ -3,7 +3,8 @@ from question import QuestionMC, QuestionTF
 
 class Quiz:
     def __init__(
-        self, name: str = "",
+        self,
+        name: str = "",
         description: str = "",
         questions: list[QuestionMC | QuestionTF] = None
     ):
@@ -16,16 +17,17 @@ class Quiz:
             q.points for q in self.questions) if self.questions else 0
 
     def print_header(self):
-        print('\n\n---------------------------------------------')
         print(f'QUIZ NAME: {self.name}')
         print(f'DESCRIPTION: {self.description}')
         print(f'QUESTIONS: {len(self.questions)}')
         print(f'TOTAL POINTS: {self.total_points}')
         print('---------------------------------------------\n')
 
-    def print_result(self):
-        print('\n---------------------------------------------')
-        print()
+    def print_results(self, quiztaker):
+        print(f'Congratulations, {quiztaker}!')
+        print(
+            f'You answered {self.correct_count} out of {len(self.questions)} questions')
+        print(f'Your score: {self.score} out of {self.total_points}')
         print('---------------------------------------------\n')
 
     def take_quiz(self):

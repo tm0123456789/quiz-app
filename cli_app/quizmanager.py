@@ -4,7 +4,7 @@ from quizparser import QuizParser
 
 
 class QuizManager:
-    def __init__(self, quizfolder):
+    def __init__(self, quizfolder: str):
         self.quizfolder = quizfolder
         self.the_quiz = None    # most recently selected quiz
         self.quizzes = dict()   # collection of quizzes
@@ -25,6 +25,14 @@ class QuizManager:
     def list_quizzes(self):
         for k, v in self.quizzes.items():
             print(f"[{k}]: {v.name}")
+
+    def take_quiz(self, quiz_num: int, username: str):
+        self.quiztaker = username
+        self.the_quiz = self.quizzes[quiz_num]
+        self.results = self.the_quiz.take_quiz()
+
+    def print_results(self):
+        self.the_quiz.print_results(self.quiztaker)
 
 
 # if __name__ == '__main__':
