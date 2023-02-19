@@ -24,3 +24,8 @@ class Tag(str, Enum):
     QUESTION = "Question"
     QUESTION_TEXT = "QuestionText"
     ANSWER = "Answer"
+
+
+class YesNo(str, Enum):
+    Y = 'y'
+    N = 'n'

@@ -1,9 +1,12 @@
 import os
 
+from datetime import datetime as dt
 from quizparser import QuizParser
 
 
 class QuizManager:
+    RESULTS_FOLDER = 'user_results'
+
     def __init__(self, quizfolder: str):
         self.quizfolder = quizfolder
         self.the_quiz = None    # most recently selected quiz
@@ -33,6 +36,12 @@ class QuizManager:
 
     def print_results(self):
         self.the_quiz.print_results(self.quiztaker)
+
+    def save_results(self):
+        today = dt.now()
+        filename = f'{QuizManager.RESULTS_FOLDER}/quiz_results_{today.year}_{today.month}_{today.day}.txt'
+        with open(filename, 'a+') as f:
+            self.the_quiz.print_results(self.quiztaker, f)
 
 
 # if __name__ == '__main__':

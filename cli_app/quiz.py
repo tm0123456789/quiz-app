@@ -1,3 +1,6 @@
+import sys
+from textwrap import dedent
+from datetime import datetime as dt
 from question import QuestionMC, QuestionTF
 
 
@@ -23,12 +26,15 @@ class Quiz:
         print(f'TOTAL POINTS: {self.total_points}')
         print('---------------------------------------------\n')
 
-    def print_results(self, quiztaker):
-        print(f'Congratulations, {quiztaker}!')
-        print(
-            f'You answered {self.correct_count} out of {len(self.questions)} questions')
-        print(f'Your score: {self.score} out of {self.total_points}')
-        print('---------------------------------------------\n')
+    def print_results(self, quiztaker, file=sys.stdout):
+        results = f"""
+        USERNAME: {quiztaker}
+        DATE: {dt.today()}
+        QUESTIONS: {self.correct_count} out of {len(self.questions)}
+        SCORE: {self.score} out of {self.total_points}
+        ---------------------------------------------
+        """
+        print(dedent(results), file=file, flush=True)
 
     def take_quiz(self):
         # initialize quiz state
