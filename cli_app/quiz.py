@@ -1,3 +1,4 @@
+import random
 import sys
 from textwrap import dedent
 from datetime import datetime as dt
@@ -47,6 +48,7 @@ class Quiz:
         self.print_header()
 
         # execute each question
+        random.shuffle(self.questions)
         for q in self.questions:
             q.ask()
             if q.is_correct:
