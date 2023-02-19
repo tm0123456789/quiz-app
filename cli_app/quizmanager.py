@@ -1,6 +1,6 @@
 import os
 
-from datetime import datetime as dt
+import datetime as dt
 from quizparser import QuizParser
 
 
@@ -38,7 +38,7 @@ class QuizManager:
         self.the_quiz.print_results(self.quiztaker)
 
     def save_results(self):
-        today = dt.now()
+        today = dt.datetime.now()
         filename = f'{QuizManager.RESULTS_FOLDER}/quiz_results_{today.year}_{today.month}_{today.day}.txt'
         with open(filename, 'a+') as f:
             self.the_quiz.print_results(self.quiztaker, f)

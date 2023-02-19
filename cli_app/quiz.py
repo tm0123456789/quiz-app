@@ -1,7 +1,7 @@
 import random
 import sys
 from textwrap import dedent
-from datetime import datetime as dt
+import datetime as dt
 from question import QuestionMC, QuestionTF
 
 
@@ -19,6 +19,7 @@ class Quiz:
         self.correct_count = 0
         self.total_points = sum(
             q.points for q in self.questions) if self.questions else 0
+        self.completion_time = 0
 
     def print_header(self):
         print(f'QUIZ NAME: {self.name}')
@@ -30,7 +31,8 @@ class Quiz:
     def print_results(self, quiztaker, file=sys.stdout):
         results = f"""
         USERNAME: {quiztaker}
-        DATE: {dt.today()}
+        DATE: {dt.date.today()}
+        COMPLETION TIME: {self.completion_time}
         QUESTIONS: {self.correct_count} out of {len(self.questions)}
         SCORE: {self.score} out of {self.total_points}
         ---------------------------------------------
@@ -41,6 +43,7 @@ class Quiz:
         # initialize quiz state
         self.score = 0
         self.correct_count = 0
+        self.completion_time = 0
         for q in self.questions:
             q.is_correct = False
 
@@ -49,6 +52,7 @@ class Quiz:
 
         # execute each question
         random.shuffle(self.questions)
+        start_time = dt.datetime.now()
         for q in self.questions:
             q.ask()
             if q.is_correct:
@@ -57,8 +61,11 @@ class Quiz:
 
         print('---------------------------------------------\n')
 
-        # return the results
-        return (self.score, self.correct_count, self.total_points)
+        # set completion time
+        end_time = dt.datetime.now()
+        self.completion_time = end_time - start_time
+        self.completion_time = dt.timedelta(
+            seconds=round(self.completion_time.total_seconds()))
 
 
 # if __name__ == '__main__':
@@ -67,5 +74,5 @@ class Quiz:
 #     q2 = QuestionMC(10, 'What is 2+2?', 'a',
 #                     [AnswerMC('a', '4'), AnswerMC('b', '5'), AnswerMC('c', '2'), AnswerMC('d', '8')])
 #     quiz = Quiz('Quiz_1', 'Test quiz', [q1, q2])
-#     result = quiz.take_quiz()
-#     print(result)
+#     quiz.take_quiz()
+#     print(quiz.correct_count, quiz.score, quiz.total_points)
